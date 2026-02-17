@@ -96,7 +96,6 @@ class SparseConvFunction(Function):
             raise e
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs, indice_pair_num, features, filters = ctx.saved_tensors
@@ -162,7 +161,6 @@ class SparseInverseConvFunction(Function):
             raise e
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs, indice_pair_num, features, filters = ctx.saved_tensors
@@ -242,7 +240,6 @@ class SparseImplicitGemmFunction(Function):
         return out
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         features, filters, pair_fwd, pair_bwd = ctx.saved_tensors
@@ -331,7 +328,6 @@ class SubMConvFunction(Function):
             raise e
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs, indice_pair_num, features, filters = ctx.saved_tensors
@@ -368,7 +364,6 @@ class SparseMaxPoolFunction(Function):
         return out
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs, indice_pair_num, features, out = ctx.saved_tensors
@@ -388,7 +383,6 @@ class SparseMaxPoolImplicitGemmFunction(Function):
         return out
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs_bwd, features, out = ctx.saved_tensors
@@ -411,7 +405,6 @@ class SparseAvgPoolImplicitGemmFunction(Function):
         return out
 
     @staticmethod
-    @once_differentiable
     @_TORCH_CUSTOM_BWD
     def backward(ctx, grad_output):
         indice_pairs_bwd, features, out, count = ctx.saved_tensors
